@@ -14,16 +14,12 @@ BOT_USERNAME: Final = '@EnroLLAI_bot'
 app = Flask(__name__)
 
 # Database functions
-def get_db_password():
-    with open("db_password.txt", "r") as file:
-        return file.read().strip()
-
 def get_db_connection():
     try:
         conn = psycopg2.connect(
             dbname=os.getenv("DB_NAME"),
             user=os.getenv("DB_USER"),
-            password=get_db_password(),
+            password=os.getenv("DB_PASSWORD"),
             host=os.getenv("DB_HOST"),
             port=os.getenv("DB_PORT")
         )
